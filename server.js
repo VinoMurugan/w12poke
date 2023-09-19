@@ -13,6 +13,20 @@ const pokemons = require('./models/pokemons.js');
 app.set('view engine', 'jsx');
 app.engine('jsx', jsxEngine());
 
+//near the top, around other app.use() calls
+app.use(express.urlencoded({extended:false}));
+
+app.use(express.static('images'));
+
+
+
+app.use((req, res, next) => {
+    console.log('I run for all routes');
+    next();
+});
+
+
+
 // Define a GET route for /pokemon that sends the 'pokemon' array as JSON
 app.get('/pokemons', (req, res) => {
     try{
@@ -29,6 +43,37 @@ app.get('/pokemons', (req, res) => {
 //         pokemon: pokemons[req.params.indexOfPokemonsArray]
 //     })//render the info using the 
 // });
+
+
+//new - get the form to add a new fruit
+app.get('/pokemons/new', (req, res) => {
+    res.render('New');
+});
+
+
+//DELETE
+
+
+//UPDATE
+
+
+//CREATE
+app.post('/pokemons', (req, res) => {
+    // Handle the POST request to create a new "pokee" here
+    // You can access form data from req.body
+    const name = req.body.name;
+    const color = req.body.color;
+    const isitPokeFound = req.body['Gotta Catch Em All'];
+    const img = req.body.img;
+    pokemons.push(req.body);
+    console.log(pokemons);
+    res.send('data received');
+});
+
+
+
+
+
 
 app.get('/pokemons/:indexOfPokemonsArray', (req, res) => {
     const indexOfPokemonsArray = req.params.indexOfPokemonsArray;
