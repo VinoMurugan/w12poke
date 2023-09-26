@@ -2,9 +2,7 @@ const React = require('react');
 
 class New extends React.Component {
   render() {
-   
-
-    return (
+   return (
         <div>
             <h1>New pokee page</h1>
             {/* NOTE: action will be the route, method will be the HTTP verb */}
