@@ -27,9 +27,11 @@ app.set('view engine', 'jsx');
 app.engine('jsx', jsxEngine());
 
 //near the top, around other app.use() calls
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:false}));
 
-app.use(methodOverride('_method'))
+app.use(express.static('images'));
+
+
 
 app.use((req, res, next) => {
     console.log('I run for all routes')
