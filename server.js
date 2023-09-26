@@ -7,6 +7,7 @@ const app = express();
 const jsxEngine = require('jsx-view-engine')
 
 const methodOverride = require('method-override')
+app.use(methodOverride('_method'));
 
 const mongoose = require('mongoose')
 // connect to Mongoose
